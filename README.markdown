@@ -1,69 +1,91 @@
 PySIMBAD.py
 ===========
+
+----
+# Warning
+This has been deprecated for a long time, even though it still works. 
+
+It was originally written as simbot, later renamed to PySIMBAD, in 2006 for the TÜBİTAK National Observatory (TÜBİTAK Ulusal Gözlemevi - TUG) Data Archive, to resolve alternative names of astronomical objects, i.e. name resolution. Now there are various tools for that.
+
+It would be wise to use this only for educational purposes, and use astroquery for production.
+https://github.com/astropy/astroquery
+
+----
+
 **version** 0.0.7
 http://github.com/eaydin/PySIMBAD
 
-About :
+# About
     This is a simple script, written in a simple manner.
     Just connects to the CDS-Simbad Astronomical Services and retrieves information parsing the HTML files.
     Can be used both as a Python module, or a standalone program.
     Still has a lot to do, I'll add some stuff when I have the time.
 
-Dependency : Python 2.6.x
+# Dependency
+Python 2.6.x
 
-Usage :
+# Usage
 
-   - Can be used as a standalone program.
+Can be used as a standalone program.
      `PySIMBAD.py <object name>`
-     This will output everything that can be retrieved about the object.
-     Example :
-     `PySIMBAD.py "bl cam"`
+This will output everything that can be retrieved about the object.
+
+Example :
+
+`PySIMBAD.py "bl cam"`
     
-   - Also can be used as a Python module.
+Also can be used as a Python module.
    
-   Let's first import it.
-   `>>> import PySIMBAD as sim`
+Let's first import it.
+ 
+`import PySIMBAD as sim`
    
-   Now we build a link for our desired object name, and we assign it to an object name (here named as "star"),
-   `>>> link = sim.buildLink("sirius")
-   >>> star = sim.simbad(link)`
-   
-   Now let's see what we can do with it,
-   
-   `>>> dir(star)
-   ['__class__', '__delattr__', '__dict__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'dec', 'fk4', 'fk5', 'flux', 'flux_num', 'gal', 'getCoord', 'icrs', 'mainType', 'names', 'names_num', 'objectTypes', 'page', 'ra', 'refs']`
-   
-   So we have an attribute named fk5. Let's see what it does!
-   
-   `>>> print star.fk5()
-   06 45 08.917 -16 42 58.02
-   >>> print star.ra.__doc__
-   Returns a string RA joined by ':'
-   >>> print star.ra(star.fk5())
-   06:45:08.917`
-   
-   Or we can just select the main type of the object (whether it's a galaxy, an asteroid, a supernova etc.)
-   
-   `>>> print star.mainType()
-   Spectroscopic binary
-   
-   How about the flux information?
-   
-   >>> print star.flux.__doc__
-   Returns a dictionary of Fluxes according to their Colors.
-		Example :
-		>>> S.flux()
-		{'H': '-1.391', 'J': '-1.391', 'B': '-1.46', 'K': '-1.390', 'V': '-1.47'}
-		>>> S.flux()['J']
-		'-1.391'
+Now we build a link for our desired object name, and we assign it to an object name (here named as "star"),
 
-   >>> star.flux()
-   {'H': '-1.391', 'J': '-1.391', 'B': '-1.46', 'K': '-1.390', 'V': '-1.47'}`
-   
-   Well, here's the best part (and it's why I started building it in the first place)
+`
+link = sim.buildLink("sirius") 
 
-   >>> for i in star.names() : print i
-    ...
+star = sim.simbad(link)
+`
+   
+Now let's see what we can do with it,
+   
+`dir(star)
+
+['__class__', '__delattr__', '__dict__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'dec', 'fk4', 'fk5', 'flux', 'flux_num', 'gal', 'getCoord', 'icrs', 'mainType', 'names', 'names_num', 'objectTypes', 'page', 'ra', 'refs']`
+   
+So we have an attribute named fk5. Let's see what it does!
+   
+`print star.fk5()
+06 45 08.917 -16 42 58.02
+print star.ra.__doc__
+Returns a string RA joined by ':'
+print star.ra(star.fk5())
+06:45:08.917`
+   
+Or we can just select the main type of the object (whether it's a galaxy, an asteroid, a supernova etc.)
+   
+`print star.mainType()
+Spectroscopic binary
+ 
+# How about the flux information?
+  
+print star.flux.__doc__
+Returns a dictionary of Fluxes according to their Colors.
+	Example :
+	>>> S.flux()
+	{'H': '-1.391', 'J': '-1.391', 'B': '-1.46', 'K': '-1.390', 'V': '-1.47'}
+	>>> S.flux()['J']
+	'-1.391'
+
+star.flux()
+{'H': '-1.391', 'J': '-1.391', 'B': '-1.46', 'K': '-1.390', 'V': '-1.47'}`
+   
+Well, here's the best part (and it's why I started building it in the first place)
+
+for i in star.names():
+    print i
+
     NAME SIRIUS A
     GEN# +1.00048915A
     2MASS J06450887-1642566
@@ -122,4 +144,4 @@ Usage :
     LTT 2638
     1RXS J064509.3-164241
     
-   There you go, have fun...
+There you go, have fun...
