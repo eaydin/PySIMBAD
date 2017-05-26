@@ -42,43 +42,50 @@ Let's first import it.
    
 Now we build a link for our desired object name, and we assign it to an object name (here named as "star"),
 
-`
-link = sim.buildLink("sirius") 
+`link = sim.buildLink("sirius")`
 
-star = sim.simbad(link)
-`
+`star = sim.simbad(link)`
+
    
 Now let's see what we can do with it,
    
-`dir(star)
+`dir(star)`
 
-['__class__', '__delattr__', '__dict__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'dec', 'fk4', 'fk5', 'flux', 'flux_num', 'gal', 'getCoord', 'icrs', 'mainType', 'names', 'names_num', 'objectTypes', 'page', 'ra', 'refs']`
+`['__class__', '__delattr__', '__dict__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'dec', 'fk4', 'fk5', 'flux', 'flux_num', 'gal', 'getCoord', 'icrs', 'mainType', 'names', 'names_num', 'objectTypes', 'page', 'ra', 'refs']`
    
 So we have an attribute named fk5. Let's see what it does!
    
-`print star.fk5()
-06 45 08.917 -16 42 58.02
-print star.ra.__doc__
-Returns a string RA joined by ':'
-print star.ra(star.fk5())
-06:45:08.917`
+`print star.fk5()`
+
+`06 45 08.917 -16 42 58.02`
+
+`print star.ra.__doc__`
+
+`Returns a string RA joined by ':'`
+
+`print star.ra(star.fk5())`
+
+`06:45:08.917`
    
 Or we can just select the main type of the object (whether it's a galaxy, an asteroid, a supernova etc.)
    
-`print star.mainType()
-Spectroscopic binary
+`print star.mainType()`
+
+`Spectroscopic binary`
  
-# How about the flux information?
+How about the flux information?
   
-print star.flux.__doc__
-Returns a dictionary of Fluxes according to their Colors.
+`print star.flux.__doc__`
+
+`Returns a dictionary of Fluxes according to their Colors.
+
 	Example :
 	>>> S.flux()
 	{'H': '-1.391', 'J': '-1.391', 'B': '-1.46', 'K': '-1.390', 'V': '-1.47'}
 	>>> S.flux()['J']
-	'-1.391'
+	'-1.391'`
 
-star.flux()
+`star.flux()
 {'H': '-1.391', 'J': '-1.391', 'B': '-1.46', 'K': '-1.390', 'V': '-1.47'}`
    
 Well, here's the best part (and it's why I started building it in the first place)
